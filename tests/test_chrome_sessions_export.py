@@ -108,7 +108,7 @@ class SessionParserTests(unittest.TestCase):
             [],
             [],
             sessions.FIELDS,
-            "no_session_tabs_found",
+            "no_navigation_updates_found",
         )
 
     def test_main_exports_navigation_updates_and_reports_unsupported_files(self):
@@ -139,7 +139,7 @@ class SessionParserTests(unittest.TestCase):
         self.assertEqual(len(records), 1)
         self.assertEqual(records[0]["url"], "https://example.com")
         self.assertEqual(fields, sessions.FIELDS)
-        self.assertEqual(empty_reason, "no_session_tabs_found")
+        self.assertEqual(empty_reason, "no_navigation_updates_found")
         self.assertCountEqual(sources, [valid_file, unsupported_file])
         self.assertIn("Tabs_unsupported", errors.getvalue())
         self.assertIn("encrypted SNSS version 5 at byte offset 4", errors.getvalue())

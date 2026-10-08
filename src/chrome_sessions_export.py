@@ -132,7 +132,7 @@ def main():
             except SessionParseError as error:
                 print(f"{f}: {error}", file=sys.stderr)
     return write_outputs(
-        "chrome_sessions", records, sources, FIELDS, "no_session_tabs_found"
+        "chrome_sessions", records, sources, FIELDS, "no_navigation_updates_found"
     )
 
 
