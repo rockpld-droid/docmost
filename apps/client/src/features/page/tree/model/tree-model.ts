@@ -159,7 +159,11 @@ export const treeModel = {
           // and produce overlapping fetches; we don't want React to see two
           // children with the same key.
           const existingIds = new Set(existing.map((c) => c.id));
-          const fresh = children.filter((c) => !existingIds.has(c.id));
+          const fresh = children.filter((c) => {
+            if (existingIds.has(c.id)) return false;
+            existingIds.add(c.id);
+            return true;
+          });
           if (fresh.length === 0) return n;
           touched = true;
           return { ...n, children: [...existing, ...fresh] };

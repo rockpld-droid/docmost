@@ -209,6 +209,16 @@ describe('treeModel.appendChildren', () => {
     const t2 = treeModel.appendChildren(t1, 'a', [kid('a3')]);
     expect(t2).toBe(t1);
   });
+
+  it('dedups repeated ids within one batch', () => {
+    const first = kid('a3');
+    const duplicate = { ...kid('a3'), name: 'duplicate' };
+    const t = treeModel.appendChildren(fixture, 'a', [first, duplicate]);
+
+    expect(treeModel.find(t, 'a')?.children?.filter((node) => node.id === 'a3')).toEqual([
+      first,
+    ]);
+  });
 });
 
 describe('treeModel.place', () => {
